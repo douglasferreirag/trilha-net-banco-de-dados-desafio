@@ -46,6 +46,8 @@ Você deverá criar diversas consultas, com o objetivo de retornar os dados a se
 
 ![Exercicio 1](Imagens/1.png)
 
+
+
 ## 2 - Buscar o nome e ano dos filmes, ordenados por ordem crescente pelo ano
 
 ![Exercicio 2](Imagens/2.png)
@@ -89,3 +91,81 @@ Você deverá criar diversas consultas, com o objetivo de retornar os dados a se
 ## 12 - Buscar o nome do filme e os atores, trazendo o PrimeiroNome, UltimoNome e seu Papel
 
 ![Exercicio 12](Imagens/12.png)
+
+
+Solução
+
+## 1
+
+SELECT  Nome, Ano FROM Filmes;
+
+## 2
+
+SELECT  Nome, Ano FROM Filmes ORDER BY Ano;
+
+## 3
+
+SELECT Nome,Ano, Duracao
+FROM Filmes
+WHERE Nome = 'De Volta para o Futuro';
+
+## 4
+
+SELECT *
+FROM Filmes
+WHERE Ano = 1997
+
+## 5
+
+SELECT *
+FROM Filmes
+WHERE Ano > 2000
+
+## 6
+
+SELECT *
+FROM Filmes
+WHERE Duracao > 100 AND Duracao < 150
+ORDER BY Duracao ASC
+
+## 7
+
+SELECT Ano, COUNT(1) Quantidade
+FROM Filmes
+GROUP BY Ano
+ORDER BY Quantidade DESC
+
+
+## 8
+
+SELECT PrimeiroNome, UltimoNome, Genero
+FROM Atores
+WHERE Genero = 'M'
+
+## 9
+
+SELECT PrimeiroNome, UltimoNome, Genero
+FROM Atores
+WHERE Genero = 'F'
+ORDER BY PrimeiroNome
+
+## 10
+
+SELECT F.Nome, G.Genero
+FROM Filmes as F, Generos as G, FilmesGenero as FG
+WHERE F.id = FG.IdFilme and G.Id = FG.IdGenero
+
+## 11
+
+SELECT F.Nome, G.Genero
+FROM Filmes as F, Generos as G, FilmesGenero as FG
+WHERE F.id = FG.IdFilme and G.Id = FG.IdGenero and G.Genero = 'Mistério'
+
+## 12 - Buscar o nome do filme e os atores, trazendo o PrimeiroNome, UltimoNome e seu Papel
+
+SELECT F.Nome, A.PrimeiroNome, A.UltimoNome, EF.Papel
+FROM Filmes as F, ElencoFilme as EF, Atores as A
+WHERE F.id = EF.IdFilme and A.Id = EF.IdAtor 
+
+
+
